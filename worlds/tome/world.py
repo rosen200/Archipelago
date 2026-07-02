@@ -7,6 +7,20 @@ from . import items, locations, regions, rules
 from . import options as tome_options
 
 SLOT_DATA_OPTIONS = ("merge_generic_enemy_locations", "require_alt_zones", "objective")
+
+
+class TOMEWeb(WebWorld):
+    game = "Tales of Maj'Eyal"
+    tutorials = [Tutorial(
+        "Multiworld Setup Guide",
+        "A guide to setting up TOME for Archipelago.",
+        "English",
+        "tome_en.md",
+        "setup/en",
+        ["Mabel"]
+    )]
+
+
 class TOMEWorld(World):
     """
     Tales of Maj'Eyal is an open-source roguelike set in a completely original world.
@@ -23,6 +37,8 @@ class TOMEWorld(World):
     origin_region_name = "Maj'Eyal"
 
     item_name_groups = items.ITEM_GROUPS
+
+    web_world = TOMEWeb()
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
