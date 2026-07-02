@@ -1268,6 +1268,20 @@ ENEMY_LOCATIONS = {
         is_boss=True,
         minimum_goal=2
     ),
+    "storm drake hatchling": TomeEnemyLocation(
+        name="storm drake hatchling",
+        ap_id=250,
+        region="Storm Drake Tier 2",
+        is_boss=False,
+        minimum_goal=2
+    ),
+    "storm drake": TomeEnemyLocation(
+        name="storm drake",
+        ap_id=251,
+        region="Storm Drake Tier 2",
+        is_boss=False,
+        minimum_goal=2
+    ),
 }
 
 GENERIC_LOCATION_IDS = {
@@ -1343,6 +1357,7 @@ GENERIC_LOCATION_IDS = {
     "Mark of the Spellblaze Boss": 245,
     "Dreadfell Boss": 246,
     "Lake of Nur Boss": 248,
+    "Storm Drake Tier 2 (Any)": 252,
 }
 
 VARIANT_ONLY_TYPES = {

@@ -91,6 +91,13 @@ ZONES = [
         entrance_rule=Has("Daikara") & HasAny("Old Forest", "Maze", "Sandworm Lair")
     ),
     TOMEZone(
+        name="Stormed Derth",
+        enemies=["Gwelgoroth Tier 2"],
+        variant_enemies=[],
+        tier="Tier 2",
+        entrance_rule=True_()
+    ),
+    TOMEZone(
         name="Ruined Dungeon",
         # Almost any enemy in the game can spawn here.
         # No single enemy is likely enough to be here to consider in logic.
@@ -135,6 +142,13 @@ ZONES = [
         entrance_rule=Has("Mark of the Spellblaze")
     ),
     TOMEZone(
+        name="Tempest Peak",
+        enemies=["Gwelgoroth Tier 2", "Xorn Tier 2", "Snow Giant Tier 2", "Storm Drake Tier 2"],
+        variant_enemies=[],
+        tier="Misc Pre-Dreadfell",
+        entrance_rule=True_(),
+    ),
+    TOMEZone(
         name="Dreadfell",
         enemies=["Skeletons Tier 1", "Skeletons Tier 2", "Ghoul Tier 1", "Ghoul Tier 2", "Vampire Tier 2", "Vampire Tier 3", "Wight Tier 2", "Wight Tier 3"],
         variant_enemies=[],
@@ -144,16 +158,14 @@ ZONES = [
 ]
 
 def create_and_connect_regions(world: TOMEWorld) -> None:
-    created_regions = set(["Gwelgoroth Tier 2"])
+    created_regions = set()
     # Create and connect the tier containers
     eyal = Region("Maj'Eyal", world.player, world.multiworld)
     tier1 = Region("Tier 1", world.player, world.multiworld)
     tier15 = Region("Tier 1.5", world.player, world.multiworld)
     tier2 = Region("Tier 2", world.player, world.multiworld)
-    # These appear in Derth from level 14
-    gwelgoroth = Region("Gwelgoroth Tier 2", world.player, world.multiworld)
     predreadfell = Region("Misc Pre-Dreadfell", world.player, world.multiworld)
-    regions = [eyal, tier1, tier15, tier2, predreadfell, gwelgoroth]
+    regions = [eyal, tier1, tier15, tier2, predreadfell]
     world.multiworld.regions += regions
 
     
@@ -161,7 +173,6 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
     tier1.connect(tier15, "Tier 1 to Tier 1.5")
     tier15.connect(tier2, "Tier 1.5 to Tier 2", HasGroupUnique("Tier 1.5 Zones", count=1))
     tier2.connect(predreadfell, "Tier 2 to Pre-Dreadfell", HasGroupUnique("Tier 2 Zones", count=3))
-    tier2.connect(gwelgoroth, "Gwelgoroths from Storming the City")
     
     for zone in ZONES:
         zone_region = Region(zone.name, world.player, world.multiworld)
