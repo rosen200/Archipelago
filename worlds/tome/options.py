@@ -19,13 +19,14 @@ class RequireAltZones(Toggle):
     display_name = "Require Alt Zones"
 
 class Objective(Choice):
+    """What condition should be required for goal."""
     display_name = "Objective"
 
     option_tier1_zones = 0
     option_into_the_darkness = 1
     option_vampire_crusher = 2
 
-    default = option_tier1_zones
+    default = option_vampire_crusher
 
 class IncludeProdigy(Toggle):
     """Add a prodigy point to the item pool."""

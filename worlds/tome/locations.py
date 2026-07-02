@@ -1102,7 +1102,7 @@ ENEMY_LOCATIONS = {
     ),
     "bloated horror": TomeEnemyLocation(
         name="bloated horror",
-        ap_id=211,
+        ap_id=249,
         region="Horror Tier 2",
         is_boss=False,
         minimum_goal=2
