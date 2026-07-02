@@ -1,7 +1,9 @@
 from collections.abc import Mapping
 from typing import Any
 
-from worlds.AutoWorld import World
+from BaseClasses import Tutorial
+from worlds.AutoWorld import World, WebWorld
+
 
 from . import items, locations, regions, rules
 from . import options as tome_options
