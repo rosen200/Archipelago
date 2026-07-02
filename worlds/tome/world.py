@@ -40,7 +40,7 @@ class TOMEWorld(World):
 
     item_name_groups = items.ITEM_GROUPS
 
-    web_world = TOMEWeb()
+    web = TOMEWeb()
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
