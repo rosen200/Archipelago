@@ -149,6 +149,36 @@ TOME_ITEMS = {
         classification=ItemClassification.useful,
         minimum_goal=0
     ),
+    "Reknor": TOMEItemDef(
+        name="Reknor",
+        ap_id=23,
+        classification=ItemClassification.progression,
+        minimum_goal=3
+    ),
+    "Ardhungol": TOMEItemDef(
+        name="Ardhungol",
+        ap_id=24,
+        classification=ItemClassification.progression,
+        minimum_goal=3
+    ),
+    "Tannen": TOMEItemDef(
+        name="Tannen",
+        ap_id=25,
+        classification=ItemClassification.progression,
+        minimum_goal=3
+    ),
+    "Flooded Cave": TOMEItemDef(
+        name="Flooded Cave",
+        ap_id=26,
+        classification=ItemClassification.progression,
+        minimum_goal=3
+    ),
+    "Level Up": TOMEItemDef(
+        name="Level Up",
+        ap_id=27,
+        classification=ItemClassification.filler,
+        minimum_goal=0
+    ),
 }
 
 ITEM_NAME_TO_ID = {name: item.ap_id for name, item in TOME_ITEMS.items()}
@@ -207,6 +237,10 @@ def create_all_items(world: TOMEWorld) -> None:
         num_extra_lives = min(world.options.num_extra_lives, open_items)
         open_items -= num_extra_lives
         itempool.extend(["Extra Life"] * num_extra_lives)
+    if open_items and world.options.num_level_ups > 0:
+        num_level_ups = min(world.options.num_level_ups, open_items)
+        open_items -= num_level_ups
+        itempool.extend(["Level Up"] * num_level_ups)
     if open_items and world.options.num_stat_points > 0:
         num_stat_points = min(world.options.num_stat_points, open_items)
         open_items -= num_stat_points

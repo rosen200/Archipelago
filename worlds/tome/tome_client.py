@@ -84,7 +84,6 @@ class TOMEContext(CommonContext):
 
 LOCATION_PREFIX = "APLOCATION"
 SEND_ITEMS_PREFIX = "APSENDITEMS"
-VICTORY_BOSSES = ["shade of kor'pul", "possessed"]
 
 class TOMEAddonConnection():
     server_socket: socket.socket | None = None
@@ -119,6 +118,11 @@ class TOMEAddonConnection():
 
     def dreadfell_victory(self):
         return self.get_id_for_location("The Master") in self.locations_checked
+    
+    def tannen_victory(self):
+        bosses = ["Tannen", "Drolem"]
+        return all(self.get_id_for_location(boss) in self.locations_checked for boss in bosses)
+
 
     def has_victory(self):
         if self.ctx.slot_data["objective"] == 0:
@@ -127,6 +131,8 @@ class TOMEAddonConnection():
             return self.tier2_victory()
         if self.ctx.slot_data["objective"] == 2:
             return self.dreadfell_victory()
+        if self.ctx.slot_data["objective"] == 3:
+            return self.tannen_victory()
         return False
 
     def get_id_for_location(self, name):
@@ -217,7 +223,7 @@ class TOMEAddonConnection():
                     self.handle_message(message)
             except Exception as e:
                 if not self.ctx.exit_event.is_set():
-                    logger.error(f"Encountered an error: {e}")
+                    logger.error("Encountered an error: %s", e)
         # Close socket on exit
         if self.connection:
             self.connection_file.close()

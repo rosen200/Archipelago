@@ -25,8 +25,10 @@ class Objective(Choice):
     option_tier1_zones = 0
     option_into_the_darkness = 1
     option_vampire_crusher = 2
+    option_tannen = 3
+    option_sorcerors = 4
 
-    default = option_vampire_crusher
+    default = option_tannen
 
 class IncludeProdigy(Toggle):
     """Add a prodigy point to the item pool."""
@@ -68,6 +70,14 @@ class NumStatPoints(Range):
     range_end = 10
     default = 0
 
+class NumLevelUps(Range):
+    """Number of level ups to add to the item pool."""
+    display_name = "Number of Level Ups"
+
+    range_start = 0
+    range_end = 5
+    default = 0
+
 @dataclass
 class TOMEOptions(PerGameCommonOptions):
     merge_generic_enemy_locations: MergeGenericEnemyLocations
@@ -79,3 +89,4 @@ class TOMEOptions(PerGameCommonOptions):
     num_generic_points: NumGenericPoints
     num_extra_lives: NumExtraLives
     num_stat_points: NumStatPoints
+    num_level_ups: NumLevelUps
