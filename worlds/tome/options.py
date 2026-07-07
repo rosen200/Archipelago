@@ -1,12 +1,14 @@
 from dataclasses import dataclass
 
-from Options import Choice, PerGameCommonOptions, Range, Toggle
+from Options import Choice, PerGameCommonOptions, Range, Toggle, DefaultOnToggle
 
-class MergeGenericEnemyLocations(Toggle):
+class MergeGenericEnemyLocations(DefaultOnToggle):
     """Combine all enemies in a given category into a single location.
     For example, instead of having separate locations for each
     different type of rodent, you'll have one location awarded for
-    killing any rodent."""
+    killing any rodent. Note that without this you will likely need
+    multiple characters to find all enemies.
+    """
     display_name = "Merge Generic Enemy Locations"
 
 class RequireAltZones(Toggle):

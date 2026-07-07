@@ -22,3 +22,5 @@ def set_completion_condition(world: TOMEWorld) -> None:
         world.set_completion_rule(Has("Vampire Crusher"))
     if world.options.objective == 3:
         world.set_completion_rule(Has("Tannen Defeated"))
+    if world.options.objective == 4:
+        world.set_completion_rule(Has("Sorcerors Defeated"))

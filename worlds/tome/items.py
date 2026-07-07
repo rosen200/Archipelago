@@ -179,6 +179,48 @@ TOME_ITEMS = {
         classification=ItemClassification.filler,
         minimum_goal=0
     ),
+    "Shadow Crypt": TOMEItemDef(
+        name="Shadow Crypt",
+        ap_id=28,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
+    "Elven Ruins": TOMEItemDef(
+        name="Elven Ruins",
+        ap_id=29,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
+    "Rak'Shor Pride": TOMEItemDef(
+        name="Rak'Shor Pride",
+        ap_id=30,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
+    "Vor Pride": TOMEItemDef(
+        name="Vor Pride",
+        ap_id=31,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
+    "Gorbat Pride": TOMEItemDef(
+        name="Gorbat Pride",
+        ap_id=32,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
+    "Grushnak Pride": TOMEItemDef(
+        name="Grushnak Pride",
+        ap_id=33,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
+    "Erúan": TOMEItemDef(
+        name="Erúan",
+        ap_id=34,
+        classification=ItemClassification.progression,
+        minimum_goal=4
+    ),
 }
 
 ITEM_NAME_TO_ID = {name: item.ap_id for name, item in TOME_ITEMS.items()}
@@ -188,6 +230,8 @@ ITEM_GROUPS = {
     "Tier 2 Zones": set({"Old Forest", "Maze", "Sandworm Lair", "Daikara"}),
     "Pre-Dreadfell Zones": set({"Ruined Dungeon", "Ring of Blood",
                                 "Mark of the Spellblaze", "Halfling Ruins"}),
+    "Pride Zones": set({"Vor Pride", "Rak'Shor Pride", "Gorbat Pride",
+                        "Grushnak Pride"}),
     "Talent Points": set({"Generic Talent Point", "Class Talent Point",
                           "Category Talent Point", "Prodigy Point"}),
 }

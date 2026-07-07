@@ -105,6 +105,14 @@ ZONES = [
         enemies=["Gwelgoroth Tier 2"],
         variant_enemies=[],
         tier="Tier 2",
+        entrance_rule=HasGroupUnique("Tier 2 Zones", count=2)
+    ),
+    TOMEZone(
+        name="Lumberjack Village",
+        # Just a boss
+        enemies=[],
+        variant_enemies=[],
+        tier="Tier 2",
         entrance_rule=True_()
     ),
     TOMEZone(
@@ -185,9 +193,10 @@ ZONES = [
                  "Ghoul Tier 2", "Vampire Tier 2", "Vampire Tier 3",
                  "Wight Tier 2", "Wight Tier 3"],
         variant_enemies=[],
-        tier="Early East/West",
-        # Dreadfell item is required by parent region
-        entrance_rule=True_(),
+        tier="Misc Pre-Dreadfell",
+        entrance_rule=(Has("Dreadfell") &
+                       HasGroupUnique("Tier 2 Zones", count=4) &
+                       HasGroupUnique("Pre-Dreadfell Zones", count=2)),
         has_backup_guardian=True,
     ),
     TOMEZone(
@@ -267,6 +276,82 @@ ZONES = [
         tier="Early East/West",
         entrance_rule=Has("Reknor") & Has("Flooded Cave")
     ),
+    TOMEZone(
+        name="Shadow Crypt",
+        # Every animal, humanoid, and giant can rarely spawn here.
+        enemies=[],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=Has("Shadow Crypt")
+    ),
+    TOMEZone(
+        name="Rak'Shor Pride",
+        enemies=["Orc Tier 1", "Orc Tier 2", "Undead Horror Tier 2",
+                 "Rak'Shor Orc Tier 3", "Rak'Shor Orc Tier 4",
+                 "Bone Giant Tier 3", "Bone Giant Tier 4"],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=Has("Rak'Shor Pride")
+    ),
+    TOMEZone(
+        name="Vor Pride",
+        enemies=["Orc Tier 1", "Orc Tier 2", "Vor Orc Tier 4"],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=Has("Vor Pride")
+    ),
+    TOMEZone(
+        name="Gorbat Pride",
+        enemies=["Orc Tier 1", "Orc Tier 2", "Gorbat Orc Tier 4",
+                 "Cold Drake Tier 2", "Fire Drake Tier 2",
+                 "Storm Drake Tier 2", "Venom Drake Tier 2",
+                 "Multihued Drake Tier 2", "Multihued Drake Tier 3",
+                 "Wild Drake Tier 4"],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=Has("Gorbat Pride")
+    ),
+    TOMEZone(
+        name="Grushnak Pride",
+        enemies=["Orc Tier 1", "Orc Tier 2", "Grushnak Orc Tier 4",
+                 "Ooze Tier 1", "Ooze Tier 2", "Ooze Tier 3", "Jelly Tier 1"],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=Has("Grushnak Pride")
+    ),
+    TOMEZone(
+        name="Elven Ruins",
+        enemies=["Skeletons Tier 1", "Skeletons Tier 2", "Mummy Tier 1", "Mummy Tier 3"],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=Has("Elven Ruins")
+    ),
+    TOMEZone(
+        # Also includes the charred scar
+        name="Erúan",
+        enemies=["Fire Drake Tier 2", "Faeros Tier 3", "Ritch Tier 3", "Ritch Tier 4"],
+        variant_enemies=[],
+        tier="Orc Prides",
+        entrance_rule=HasGroupUnique("Pride Zones", count=1)
+    ),
+
+    TOMEZone(
+        name="Slime Tunnels",
+        enemies=["Ooze Tier 1", "Ooze Tier 2", "Ooze Tier 3", "Jelly Tier 1"],
+        variant_enemies=[],
+        tier="Endgame",
+        # Handled by Endgame tier
+        entrance_rule=True_()
+    ),
+    TOMEZone(
+        name="High Peak",
+        # Nothing is common enough to be in logic here.
+        enemies=[],
+        variant_enemies=[],
+        tier="Endgame",
+        # Handled by Endgame tier
+        entrance_rule=True_()
+    ),
 ]
 
 def create_and_connect_regions(world: TOMEWorld) -> None:
@@ -275,25 +360,47 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
     eyal = Region("Maj'Eyal", world.player, world.multiworld)
     tier1 = Region("Tier 1", world.player, world.multiworld)
     tier15 = Region("Tier 1.5", world.player, world.multiworld)
-    tier2 = Region("Tier 2", world.player, world.multiworld)
-    predreadfell = Region("Misc Pre-Dreadfell", world.player, world.multiworld)
-    earlyeast = Region("Early East/West", world.player, world.multiworld)
-    regions = [eyal, tier1, tier15, tier2, predreadfell, earlyeast]
+    regions = [eyal, tier1, tier15]
+    if world.options.objective >= 1:
+        tier2 = Region("Tier 2", world.player, world.multiworld)
+        regions.append(tier2)
+    if world.options.objective >= 2:
+        predreadfell = Region("Misc Pre-Dreadfell", world.player, world.multiworld)
+        regions.append(predreadfell)
+    if world.options.objective >= 3:
+        earlyeast = Region("Early East/West", world.player, world.multiworld)
+        regions.append(earlyeast)
+    if world.options.objective >= 4:
+        prides = Region("Orc Prides", world.player, world.multiworld)
+        endgame = Region("Endgame", world.player, world.multiworld)
+        regions.append(prides)
+        regions.append(endgame)
     world.multiworld.regions += regions
 
     eyal.connect(tier1, "Eyal to Tier 1")
     tier1.connect(tier15, "Tier 1 to Tier 1.5")
-    tier15.connect(tier2, "Tier 1.5 to Tier 2", HasGroupUnique("Tier 1.5 Zones", count=1))
-    tier2.connect(predreadfell, "Tier 2 to Pre-Dreadfell", HasGroupUnique("Tier 2 Zones", count=3))
-    predreadfell.connect(earlyeast, "Early East/West starting with Dreadfell",
-                         Has("Dreadfell") &
-                         HasGroupUnique("Tier 2 Zones", count=4) &
-                         HasGroupUnique("Pre-Dreadfell Zones", count=2))
+    if world.options.objective >= 1:
+        tier15.connect(tier2, "Tier 1.5 to Tier 2", HasGroupUnique("Tier 1.5 Zones", count=1))
+    if world.options.objective >= 2:
+        tier2.connect(predreadfell, "Tier 2 to Pre-Dreadfell", HasGroupUnique("Tier 2 Zones", count=3))
+    if world.options.objective >= 3:
+        predreadfell.connect(earlyeast, "Early East/West starting with Dreadfell",
+                             Has("Dreadfell") &
+                             HasGroupUnique("Tier 2 Zones", count=4) &
+                             HasGroupUnique("Pre-Dreadfell Zones", count=2))
+    if world.options.objective >= 4:
+        earlyeast.connect(prides, "Orc Prides after Tannen", Has("Reknor") & Has("Tannen"))
+        prides.connect(endgame, "Endgame after Prides", HasGroupUnique("Pride Zones", count=4))
 
     for zone in ZONES:
         zone_region = Region(zone.name, world.player, world.multiworld)
         if zone.tier:
-            world.get_region(zone.tier).connect(
+            try:
+                parent_region = world.get_region(zone.tier)
+            except KeyError:
+                # Region should not be in the seed.
+                continue
+            parent_region.connect(
                 zone_region, f"{zone.name} in {zone.tier}", zone.entrance_rule)
         world.multiworld.regions.append(zone_region)
 
@@ -316,7 +423,7 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
                     enemy_region = world.get_region(enemy)
                 zone_region.connect(enemy_region, f"{enemy} in {zone.name}")
 
-        if zone.has_backup_guardian:
+        if zone.has_backup_guardian and world.options.objective >= 3:
             backup_guardian_region = Region(
                 f"{zone.name} Backup Guardian", world.player, world.multiworld)
             world.multiworld.regions.append(backup_guardian_region)

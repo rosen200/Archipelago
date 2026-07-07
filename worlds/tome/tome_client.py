@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any, TextIO
 from CommonClient import ClientCommandProcessor, CommonContext, logger, server_loop, gui_enabled, get_base_parser
 from NetUtils import ClientStatus
 
-from .locations import ALL_LOCATION_IDS, ENEMY_LOCATIONS, should_omit_location, get_location_name_for_enemy
+from .locations import ALL_LOCATION_IDS, ENEMY_LOCATIONS, get_location_name_for_enemy
 from .world import SLOT_DATA_OPTIONS
 
 
@@ -122,6 +122,10 @@ class TOMEAddonConnection():
     def tannen_victory(self):
         bosses = ["Tannen", "Drolem"]
         return all(self.get_id_for_location(boss) in self.locations_checked for boss in bosses)
+    
+    def sorcerors_victory(self):
+        bosses = ["Elandar", "Argoniel"]
+        return all(self.get_id_for_location(boss) in self.locations_checked for boss in bosses)
 
 
     def has_victory(self):
@@ -133,16 +137,14 @@ class TOMEAddonConnection():
             return self.dreadfell_victory()
         if self.ctx.slot_data["objective"] == 3:
             return self.tannen_victory()
+        if self.ctx.slot_data["objective"] == 4:
+            return self.sorcerors_victory()
         return False
 
     def get_id_for_location(self, name):
         if name not in ENEMY_LOCATIONS:
             return None
         data = ENEMY_LOCATIONS[name]
-        if should_omit_location(
-                data, self.ctx.slot_data["objective"],
-                self.ctx.slot_data["require_alt_zones"]):
-            return None
         location_name = get_location_name_for_enemy(
             data, not self.ctx.slot_data["require_alt_zones"],
             self.ctx.slot_data["merge_generic_enemy_locations"])
@@ -162,10 +164,7 @@ class TOMEAddonConnection():
             asyncio.run(self.ctx.send_msgs([
                 {"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
             self.ctx.finished_game = True
-
-        self.ctx.locations_checked = list(self.locations_checked)
-        message = [{"cmd": 'LocationChecks', "locations": self.locations_checked}]
-        asyncio.run(self.ctx.send_msgs(message))
+        asyncio.run(self.ctx.check_locations(self.locations_checked))
 
     def handle_message(self, message):
         if not self.connection or not self.connection_file:
