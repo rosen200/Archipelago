@@ -118,11 +118,11 @@ class TOMEAddonConnection():
 
     def dreadfell_victory(self):
         return self.get_id_for_location("The Master") in self.locations_checked
-    
+
     def tannen_victory(self):
         bosses = ["Tannen", "Drolem"]
         return all(self.get_id_for_location(boss) in self.locations_checked for boss in bosses)
-    
+
     def sorcerors_victory(self):
         bosses = ["Elandar", "Argoniel"]
         return all(self.get_id_for_location(boss) in self.locations_checked for boss in bosses)
@@ -149,7 +149,7 @@ class TOMEAddonConnection():
             data, not self.ctx.slot_data["require_alt_zones"],
             self.ctx.slot_data["merge_generic_enemy_locations"])
         if location_name not in ALL_LOCATION_IDS:
-            logger.error("Couldn't find id for {location_name!}")
+            logger.error("Couldn't find id for %s!", location_name)
             return None
         return ALL_LOCATION_IDS[location_name]
 
@@ -222,7 +222,11 @@ class TOMEAddonConnection():
                     self.handle_message(message)
             except Exception as e:
                 if not self.ctx.exit_event.is_set():
-                    logger.error("Encountered an error: %s", e)
+                    if self.connection_file is not None:
+                        logger.error("Encountered an error: %s", e)
+                    else:
+                        logger.error(
+                            "TOME Client cannot process locations while disconnected.")
         # Close socket on exit
         if self.connection:
             self.connection_file.close()

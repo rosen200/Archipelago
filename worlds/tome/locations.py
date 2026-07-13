@@ -83,7 +83,7 @@ ENEMY_LOCATIONS = {
     "warg": TomeEnemyLocation(
         name="warg",
         ap_id=8,
-        region="Canines Tier 2",
+        region="Canines Tier 1",
         is_boss=False,
         minimum_goal=1
     ),
@@ -299,6 +299,20 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=2
     ),
+    "dragon turtle": TomeEnemyLocation(
+        name="dragon turtle",
+        ap_id=393,
+        region="Aquatic Critter Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "electric eel": TomeEnemyLocation(
+        name="electric eel",
+        ap_id=394,
+        region="Aquatic Critter Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
     "red crystal": TomeEnemyLocation(
         name="red crystal",
         ap_id=36,
@@ -358,6 +372,13 @@ ENEMY_LOCATIONS = {
     "greater shivgoroth": TomeEnemyLocation(
         name="greater shivgoroth",
         ap_id=106,
+        region="Shivgoroth Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "ultimate shivgoroth": TomeEnemyLocation(
+        name="ultimate shivgoroth",
+        ap_id=414,
         region="Shivgoroth Tier 1",
         is_boss=False,
         minimum_goal=0
@@ -585,6 +606,20 @@ ENEMY_LOCATIONS = {
     "assassin": TomeEnemyLocation(
         name="assassin",
         ap_id=101,
+        region="Thieves Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "shadowblade": TomeEnemyLocation(
+        name="shadowblade",
+        ap_id=415,
+        region="Thieves Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "rogue sapper": TomeEnemyLocation(
+        name="rogue sapper",
+        ap_id=392,
         region="Thieves Tier 2",
         is_boss=False,
         minimum_goal=1
@@ -974,6 +1009,13 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=1
     ),
+    "ice wyrm": TomeEnemyLocation(
+        name="ice wyrm",
+        ap_id=402,
+        region="Cold Drake Tier 3",
+        is_boss=False,
+        minimum_goal=1
+    ),
     "fire drake hatchling": TomeEnemyLocation(
         name="fire drake hatchling",
         ap_id=161,
@@ -985,6 +1027,13 @@ ENEMY_LOCATIONS = {
         name="fire drake",
         ap_id=162,
         region="Fire Drake Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "fire wyrm": TomeEnemyLocation(
+        name="fire wyrm",
+        ap_id=403,
+        region="Fire Drake Tier 3",
         is_boss=False,
         minimum_goal=1
     ),
@@ -1047,6 +1096,13 @@ ENEMY_LOCATIONS = {
     "ghast": TomeEnemyLocation(
         name="ghast",
         ap_id=195,
+        region="Ghoul Tier 2",
+        is_boss=False,
+        minimum_goal=2
+    ),
+    "ghoulking": TomeEnemyLocation(
+        name="ghoulking",
+        ap_id=395,
         region="Ghoul Tier 2",
         is_boss=False,
         minimum_goal=2
@@ -1186,6 +1242,13 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=2
     ),
+    "ultimate faeros": TomeEnemyLocation(
+        name="ultimate faeros",
+        ap_id=412,
+        region="Faeros Tier 4",
+        is_boss=False,
+        minimum_goal=2
+    ),
     "gwelgoroth": TomeEnemyLocation(
         name="gwelgoroth",
         ap_id=227,
@@ -1196,6 +1259,13 @@ ENEMY_LOCATIONS = {
     "greater gwelgoroth": TomeEnemyLocation(
         name="greater gwelgoroth",
         ap_id=228,
+        region="Gwelgoroth Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "ultimate gwelgoroth": TomeEnemyLocation(
+        name="ultimate gwelgoroth",
+        ap_id=391,
         region="Gwelgoroth Tier 2",
         is_boss=False,
         minimum_goal=1
@@ -1293,6 +1363,13 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=2
     ),
+    "storm wyrm": TomeEnemyLocation(
+        name="storm wyrm",
+        ap_id=404,
+        region="Storm Drake Tier 3",
+        is_boss=False,
+        minimum_goal=1
+    ),
     "Urkis, the High Tempest": TomeEnemyLocation(
         name="Urkis, the High Tempest",
         ap_id=253,
@@ -1316,6 +1393,13 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=3,
     ),
+    "mountain troll thunderer": TomeEnemyLocation(
+        name="mountain troll thunderer",
+        ap_id=386,
+        region="Trolls Tier 3",
+        is_boss=False,
+        minimum_goal=3,
+    ),
     "orc warrior": TomeEnemyLocation(
         name="orc warrior",
         ap_id=259,
@@ -1334,6 +1418,34 @@ ENEMY_LOCATIONS = {
         name="orc soldier",
         ap_id=261,
         region="Orc Tier 1",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "orc master assassin": TomeEnemyLocation(
+        name="orc master assassin",
+        ap_id=396,
+        region="Orc Tier 2",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "orc grand master assassin": TomeEnemyLocation(
+        name="orc grand master assassin",
+        ap_id=397,
+        region="Orc Tier 2",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "fiery orc wyrmic": TomeEnemyLocation(
+        name="fiery orc wyrmic",
+        ap_id=398,
+        region="Orc Tier 2",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "icy orc wyrmic": TomeEnemyLocation(
+        name="icy orc wyrmic",
+        ap_id=399,
+        region="Orc Tier 2",
         is_boss=False,
         minimum_goal=3,
     ),
@@ -1453,6 +1565,13 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=3,
     ),
+    "runed bone giant": TomeEnemyLocation(
+        name="runed bone giant",
+        ap_id=387,
+        region="Bone Giant Tier 5",
+        is_boss=False,
+        minimum_goal=3,
+    ),
     "fire imp": TomeEnemyLocation(
         name="fire imp",
         ap_id=287,
@@ -1495,7 +1614,20 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=3,
     ),
-    # Rarity 8, but has fixed spawns in Tannen's Tower.
+    "uruivellas": TomeEnemyLocation(
+        name="uruivellas",
+        ap_id=400,
+        region="Major Demon Tier 4",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "thaurhereg": TomeEnemyLocation(
+        name="thaurhereg",
+        ap_id=401,
+        region="Major Demon Tier 4",
+        is_boss=False,
+        minimum_goal=3,
+    ),
     "greater multi-hued wyrm": TomeEnemyLocation(
         name="greater multi-hued wyrm",
         ap_id=299,
@@ -1756,10 +1888,24 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=1
     ),
+    "venom wyrm": TomeEnemyLocation(
+        name="venom wyrm",
+        ap_id=405,
+        region="Venom Drake Tier 3",
+        is_boss=False,
+        minimum_goal=1
+    ),
     "spire dragon": TomeEnemyLocation(
         name="spire dragon",
         ap_id=348,
         region="Wild Drake Tier 4",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "blinkwyrm": TomeEnemyLocation(
+        name="blinkwyrm",
+        ap_id=406,
+        region="Wild Drake Tier 5",
         is_boss=False,
         minimum_goal=1
     ),
@@ -1948,7 +2094,312 @@ ENEMY_LOCATIONS = {
         minimum_goal=0,
         is_mergeable=False,
     ),
-
+    "banshee": TomeEnemyLocation(
+        name="banshee",
+        ap_id=385,
+        region="Ghost Tier 3",
+        is_boss=False,
+        minimum_goal=2,
+    ),
+    "Brotoq the Reaver": TomeEnemyLocation(
+        name="Brotoq the Reaver",
+        ap_id=416,
+        region="Escape From Reknor",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "The Mouth": TomeEnemyLocation(
+        name="The Mouth",
+        ap_id=417,
+        region="Deep Bellow",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "The Abomination": TomeEnemyLocation(
+        name="The Abomination",
+        ap_id=418,
+        region="Deep Bellow Backup Guardian",
+        is_boss=True,
+        minimum_goal=3,
+        is_mergeable=False,
+    ),
+    "ritch flamespitter": TomeEnemyLocation(
+        name="ritch flamespitter",
+        ap_id=419,
+        region="Rel Ritch Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "ritch impaler": TomeEnemyLocation(
+        name="ritch impaler",
+        ap_id=420,
+        region="Rel Ritch Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "chitinous ritch": TomeEnemyLocation(
+        name="chitinous ritch",
+        ap_id=421,
+        region="Rel Ritch Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "Ritch Great Hive Mother": TomeEnemyLocation(
+        name="Ritch Great Hive Mother",
+        ap_id=422,
+        region="Ritch Tunnels",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    # These enemies have identical definitions in two separate zones.
+    "naga tidewarden": TomeEnemyLocation(
+        name="naga tidewarden",
+        ap_id=424,
+        region="Naga Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "naga tidecaller": TomeEnemyLocation(
+        name="naga tidecaller",
+        ap_id=425,
+        region="Naga Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "naga nereid": TomeEnemyLocation(
+        name="naga nereid",
+        ap_id=426,
+        region="Naga Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "Lady Nashva the Streambender": TomeEnemyLocation(
+        name="Lady Nashva the Streambender",
+        ap_id=428,
+        region="Murgol's Lair",
+        is_boss=True,
+        minimum_goal=0,
+    ),
+    "Murgol, the Yaech Lord": TomeEnemyLocation(
+        name="Murgol, the Yaech Lord",
+        ap_id=429,
+        region="Murgol's Lair",
+        is_boss=True,
+        minimum_goal=0,
+    ),
+    "yaech diver": TomeEnemyLocation(
+        name="yaech diver",
+        ap_id=431,
+        region="Yaech Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "yaech hunter": TomeEnemyLocation(
+        name="yaech hunter",
+        ap_id=432,
+        region="Yaech Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "yaech mindslayer": TomeEnemyLocation(
+        name="yaech mindslayer",
+        ap_id=433,
+        region="Yaech Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "yaech psion": TomeEnemyLocation(
+        name="yaech psion",
+        ap_id=434,
+        region="Yaech Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "Necromancer": TomeEnemyLocation(
+        name="Necromancer",
+        ap_id=436,
+        region="Blighted Ruins",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "Half-Finished Bone Giant": TomeEnemyLocation(
+        name="Half-Finished Bone Giant",
+        ap_id=437,
+        region="Blighted Ruins",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "fleshy experiment": TomeEnemyLocation(
+        name="fleshy experiment",
+        ap_id=438,
+        region="Blighted Ruins Horror Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "boney experiment": TomeEnemyLocation(
+        name="boney experiment",
+        ap_id=439,
+        region="Blighted Ruins Horror Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "sanguine experiment": TomeEnemyLocation(
+        name="sanguine experiment",
+        ap_id=440,
+        region="Blighted Ruins Horror Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "Spatial Disturbance": TomeEnemyLocation(
+        name="Spatial Disturbance",
+        ap_id=442,
+        region="Abashed Expanse",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "Lady Zoisla the Tidebringer": TomeEnemyLocation(
+        name="Lady Zoisla the Tidebringer",
+        ap_id=443,
+        region="Slazish Fens",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "Weaver Queen": TomeEnemyLocation(
+        name="Weaver Queen",
+        ap_id=444,
+        region="Unhallowed Morass",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "Kyless": TomeEnemyLocation(
+        name="Kyless",
+        ap_id=445,
+        region="Tranquil Meadow",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "Berethh": TomeEnemyLocation(
+        name="Berethh",
+        ap_id=446,
+        region="Tranquil Meadow",
+        is_boss=True,
+        minimum_goal=0,
+        is_mergeable=False,
+    ),
+    "losgoroth": TomeEnemyLocation(
+        name="losgoroth",
+        ap_id=447,
+        region="Losgoroth Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "manaworm": TomeEnemyLocation(
+        name="manaworm",
+        ap_id=448,
+        region="Losgoroth Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "weaver hatchling": TomeEnemyLocation(
+        name="weaver hatchling",
+        ap_id=450,
+        region="Chronomancer Spider Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "orb spinner": TomeEnemyLocation(
+        name="orb spinner",
+        ap_id=451,
+        region="Chronomancer Spider Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "orb weaver": TomeEnemyLocation(
+        name="orb weaver",
+        ap_id=452,
+        region="Chronomancer Spider Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "fate spinner": TomeEnemyLocation(
+        name="fate spinner",
+        ap_id=453,
+        region="Chronomancer Spider Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "fate weaver": TomeEnemyLocation(
+        name="fate weaver",
+        ap_id=454,
+        region="Chronomancer Spider Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "caravan merchant": TomeEnemyLocation(
+        name="caravan merchant",
+        ap_id=456,
+        region="Caravaneer Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "caravan guard": TomeEnemyLocation(
+        name="caravan guard",
+        ap_id=457,
+        region="Caravaneer Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "caravan porter": TomeEnemyLocation(
+        name="caravan porter",
+        ap_id=458,
+        region="Caravaneer Tier 1",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "war dog": TomeEnemyLocation(
+        name="war dog",
+        ap_id=460,
+        region="Cursed Canine Tier 2",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "corrupted war dog": TomeEnemyLocation(
+        name="corrupted war dog",
+        ap_id=461,
+        region="Cursed Canine Tier 2",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "shadow claw": TomeEnemyLocation(
+        name="shadow claw",
+        ap_id=463,
+        region="Cursed Shadow Tier 2",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "shadow stalker": TomeEnemyLocation(
+        name="shadow stalker",
+        ap_id=464,
+        region="Cursed Shadow Tier 2",
+        is_boss=False,
+        minimum_goal=0,
+    ),
+    "hummerhorn": TomeEnemyLocation(
+        name="hummerhorn",
+        ap_id=467,
+        region="Swarm Tier 2",
+        is_boss=False,
+        minimum_goal=0
+    ),
 }
 
 GENERIC_LOCATION_IDS = {
@@ -1996,6 +2447,8 @@ GENERIC_LOCATION_IDS = {
     "Snow Giant Tier 2 (Any)": 184,
     "Cold Drake Tier 2 (Any)": 185,
     "Fire Drake Tier 2 (Any)": 186,
+    "Cold Drake Tier 3 (Any)": 407,
+    "Fire Drake Tier 3 (Any)": 408,
     "Daikara Boss": 187,
     "Maze Boss": 188,
     "Sandworm Lair Boss": 189,
@@ -2015,6 +2468,7 @@ GENERIC_LOCATION_IDS = {
     "Aquatic Horror Tier 2 (Any)": 219,
     "Elven Casters Tier 3 (Any)": 223,
     "Faeros Tier 3 (Any)": 224,
+    "Faeros Tier 4 (Any)": 413,
     "Gwelgoroth Tier 2 (Any)": 229,
     "Vampire Tier 3 (Any)": 237,
     "Vampire Tier 2 (Any)": 238,
@@ -2025,6 +2479,7 @@ GENERIC_LOCATION_IDS = {
     "Dreadfell Boss": 246,
     "Lake of Nur Boss": 248,
     "Storm Drake Tier 2 (Any)": 252,
+    "Storm Drake Tier 3 (Any)": 409,
     "Tempest Peak Boss": 254,
     "Reknor Boss": 255,
     "Trolls Tier 2 (Any)": 258,
@@ -2055,13 +2510,30 @@ GENERIC_LOCATION_IDS = {
     "Rak'Shor Orc Tier 3 (Any)": 339,
     "Rak'Shor Orc Tier 4 (Any)": 343,
     "Venom Drake Tier 2 (Any)": 347,
+    "Venom Drake Tier 3 (Any)": 410,
     "Wild Drake Tier 4 (Any)": 349,
+    "Wild Drake Tier 5 (Any)": 411,
     "Gorbat Orc Tier 4 (Any)": 354,
     "Grushnak Orc Tier 4 (Any)": 359,
     "Mummy Tier 1 (Any)": 364,
     "Mummy Tier 3 (Any)": 365,
     "Ritch Tier 3 (Any)": 377,
     "Ritch Tier 4 (Any)": 378,
+    "Ghost Tier 3 (Any)": 388,
+    "Trolls Tier 3 (Any)": 389,
+    "Bone Giant Tier 5 (Any)": 390,
+    "Rel Ritch Tier 1 (Any)": 423,
+    "Naga Tier 1 (Any)": 427,
+    "Murgol's Lair Boss": 430,
+    "Yaech Tier 1 (Any)": 435,
+    "Blighted Ruins Horror Tier 1 (Any)": 441,
+    "Losgoroth Tier 1 (Any)": 449,
+    "Chronomancer Spider Tier 1 (Any)": 455,
+    "Caravaneer Tier 1 (Any)": 459,
+    "Cursed Canine Tier 2 (Any)": 462,
+    "Cursed Shadow Tier 2 (Any)": 465,
+    "Ant Tier 3 (Any)": 466,
+    "Swarm Tier 2 (Any)": 468,
 }
 
 

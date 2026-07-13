@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, PerGameCommonOptions, Range, Toggle, DefaultOnToggle
+from Options import Choice, PerGameCommonOptions, Range, Toggle, DefaultOnToggle, OptionSet
 
 class MergeGenericEnemyLocations(DefaultOnToggle):
     """Combine all enemies in a given category into a single location.
@@ -80,6 +80,14 @@ class NumLevelUps(Range):
     range_end = 5
     default = 0
 
+class RequiredStarts(OptionSet):
+    """Race or Class specific zones that can be logically required."""
+    display_name = "Required Starts"
+
+    valid_keys = frozenset({"Dwarf", "Yeek", "Undead", "Archmage",
+                            "Chronomancer", "Celestial", "Cursed"})
+    default = frozenset()
+
 @dataclass
 class TOMEOptions(PerGameCommonOptions):
     merge_generic_enemy_locations: MergeGenericEnemyLocations
@@ -92,3 +100,4 @@ class TOMEOptions(PerGameCommonOptions):
     num_extra_lives: NumExtraLives
     num_stat_points: NumStatPoints
     num_level_ups: NumLevelUps
+    required_starts: RequiredStarts

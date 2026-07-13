@@ -15,6 +15,7 @@ class TOMEItemDef():
     ap_id: int
     classification: ItemClassification
     minimum_goal: int
+    starter_zone: bool = False
 
 TOME_ITEMS = {
     "Kor'Pul": TOMEItemDef(
@@ -221,6 +222,27 @@ TOME_ITEMS = {
         classification=ItemClassification.progression,
         minimum_goal=4
     ),
+    "Trollmire": TOMEItemDef(
+        name="Trollmire",
+        ap_id=35,
+        classification=ItemClassification.progression,
+        minimum_goal=0,
+        starter_zone=True,
+    ),
+    "Scintillating Caves": TOMEItemDef(
+        name="Scintillating Caves",
+        ap_id=36,
+        classification=ItemClassification.progression,
+        minimum_goal=0,
+        starter_zone=True,
+    ),
+    "Norgos' Lair": TOMEItemDef(
+        name="Norgos' Lair",
+        ap_id=37,
+        classification=ItemClassification.progression,
+        minimum_goal=0,
+        starter_zone=True,
+    ),
 }
 
 ITEM_NAME_TO_ID = {name: item.ap_id for name, item in TOME_ITEMS.items()}
@@ -250,13 +272,33 @@ def create_item_with_correct_classification(world: TOMEWorld, name: str) -> TOME
     classification = TOME_ITEMS[name].classification
     return TOMEItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
+def get_num_special_starting_zones(world: TOMEWorld):
+    zones = 0
+    for start in world.options.required_starts:
+        if start in {"Dwarf", "Yeek"}:
+            zones += 2
+        if start in {"Undead", "Celestial", "Chronomancer", "Archmage"}:
+            zones += 1
+    return zones
 
 def create_all_items(world: TOMEWorld) -> None:
     itempool: list[Item] = [
         item.name for item in TOME_ITEMS.values()
         if item.minimum_goal <= world.options.objective
         and item.classification == ItemClassification.progression
+        and not item.starter_zone
     ]
+    starting_zones = get_num_special_starting_zones(world)
+    standard_starting_zones = ["Trollmire", "Scintillating Caves", "Norgos' Lair"]
+    precollected_items = []
+    if starting_zones < 3:
+        num_needed_zones = 3 - starting_zones
+        precollected_items = world.random.sample(standard_starting_zones, num_needed_zones)
+        for item in precollected_items:
+            world.push_precollected(world.create_item(item))
+
+    itempool.extend([item for item in standard_starting_zones if item not in precollected_items])
+
     number_of_items = len(itempool)
 
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

@@ -4,7 +4,7 @@ import dataclasses
 from typing import TYPE_CHECKING
 
 from BaseClasses import Region
-from rule_builder.rules import Has, HasAny, HasGroupUnique, Rule, True_
+from rule_builder.rules import Has, HasGroupUnique, Rule, True_
 
 if TYPE_CHECKING:
     from .world import TOMEWorld
@@ -18,30 +18,32 @@ class TOMEZone:
     tier: str
     entrance_rule: Rule
     has_backup_guardian: bool = False
+    required_start: str = ''
 
 ZONES = [
     TOMEZone(
         name="Trollmire",
-        enemies=["Trolls Tier 1", "Vermin Tier 1", "Snake Tier 1", "Plant Tier 1", "Swarm Tier 1"],
-        variant_enemies=["Canines Tier 1", "Aquatic Critter Tier 1", "Bear Tier 1"],
+        enemies=["Trolls Tier 1", "Vermin Tier 1", "Snake Tier 1",
+                 "Plant Tier 1", "Swarm Tier 1", "Bear Tier 1"],
+        variant_enemies=["Canines Tier 1", "Aquatic Critter Tier 1"],
         tier="Tier 1",
-        entrance_rule=True_(),
+        entrance_rule=Has("Trollmire"),
         has_backup_guardian=True,
     ),
     TOMEZone(
         name="Scintillating Caves",
-        enemies=["Crystal Tier 1", "Vermin Tier 1", "Snake Tier 1", "Bear Tier 1"],
+        enemies=["Crystal Tier 1", "Vermin Tier 1", "Snake Tier 1", "Bear Tier 1", "Rodent Tier 1"],
         variant_enemies=[],
         tier="Tier 1",
-        entrance_rule=True_(),
+        entrance_rule=Has("Scintillating Caves"),
         has_backup_guardian=True,
     ),
     TOMEZone(
         name="Norgos' Lair",
-        enemies=["Canines Tier 1", "Vermin Tier 1", "Snake Tier 1", "Bear Tier 1", "Plant Tier 1"],
+        enemies=["Canines Tier 1", "Vermin Tier 1", "Snake Tier 1", "Bear Tier 1"],
         variant_enemies=["Shivgoroth Tier 1"],
         tier="Tier 1",
-        entrance_rule=True_(),
+        entrance_rule=Has("Norgos' Lair"),
     ),
     TOMEZone(
         name="Kor'Pul",
@@ -60,7 +62,8 @@ ZONES = [
     ),
     TOMEZone(
         name="Rhaloren Camp",
-        enemies=["Elven Warriors Tier 1", "Elven Casters Tier 1"],
+        enemies=["Elven Warriors Tier 1", "Elven Casters Tier 1",
+                 "Rodent Tier 1", "Vermin Tier 1", "Molds Tier 1"],
         variant_enemies=[],
         tier="Tier 1.5",
         entrance_rule=Has("Rhaloren Camp")
@@ -70,15 +73,14 @@ ZONES = [
         enemies=["Bear Tier 1", "Bear Tier 2", "Ant Tier 1", "Ant Tier 2",
                  "Plant Tier 1", "Plant Tier 2", "Snake Tier 1",
                  "Swarm Tier 1", "Vermin Tier 1"],
-        variant_enemies=["Canines Tier 1", "Canines Tier 2", "Crystal Tier 1"],
+        variant_enemies=["Canines Tier 1", "Crystal Tier 1"],
         tier="Tier 2",
         entrance_rule=Has("Old Forest"),
         has_backup_guardian=True,
     ),
     TOMEZone(
         name="Sandworm Lair",
-        # Everything except sandworms is fairly rare in this zone.
-        enemies=["Sandworm Tier 1"],
+        enemies=["Sandworm Tier 1", "Vermin Tier 1", "Ooze Tier 1", "Ooze Tier 2", "Jelly Tier 1"],
         variant_enemies=[],
         tier="Tier 2",
         entrance_rule=Has("Sandworm Lair"),
@@ -86,8 +88,11 @@ ZONES = [
     ),
     TOMEZone(
         name="Maze",
-        enemies=["Jelly Tier 1", "Ooze Tier 1", "Ooze Tier 2", "Thieves Tier 1", "Thieves Tier 2"],
-        variant_enemies=["Minotaur Tier 2", "Corrupted Horror Tier 1", "Temporal Horror Tier 2"],
+        enemies=["Jelly Tier 1", "Ooze Tier 1", "Ooze Tier 2",
+                 "Thieves Tier 1", "Thieves Tier 2", "Canines Tier 1"],
+        variant_enemies=["Minotaur Tier 2", "Corrupted Horror Tier 1",
+                         "Temporal Horror Tier 2", "Ant Tier 1",
+                         "Ant Tier 2", "Vermin Tier 1", "Rodent Tier 1"],
         tier="Tier 2",
         entrance_rule=Has("Maze"),
         has_backup_guardian=True,
@@ -95,9 +100,10 @@ ZONES = [
     TOMEZone(
         name="Daikara",
         enemies=["Xorn Tier 2", "Snow Giant Tier 2"],
-        variant_enemies=["Cold Drake Tier 2", "Fire Drake Tier 2"],
+        variant_enemies=["Cold Drake Tier 2", "Fire Drake Tier 2",
+                         "Canines Tier 1"],
         tier="Tier 2",
-        entrance_rule=Has("Daikara") & HasAny("Old Forest", "Maze", "Sandworm Lair"),
+        entrance_rule=Has("Daikara"),
         has_backup_guardian=True,
     ),
     TOMEZone(
@@ -158,7 +164,7 @@ ZONES = [
     TOMEZone(
         name="Mark of the Spellblaze",
         enemies=["Elven Casters Tier 1", "Elven Casters Tier 3",
-                 "Faeros Tier 3", "Gwelgoroth Tier 2"],
+                 "Faeros Tier 3", "Gwelgoroth Tier 2", "Rodent Tier 1", "Vermin Tier 1"],
         variant_enemies=[],
         tier="Misc Pre-Dreadfell",
         entrance_rule=Has("Mark of the Spellblaze")
@@ -169,7 +175,7 @@ ZONES = [
                  "Storm Drake Tier 2"],
         variant_enemies=[],
         tier="Misc Pre-Dreadfell",
-        entrance_rule=True_(),
+        entrance_rule=HasGroupUnique("Pre-Dreadfell Zones", count=1),
     ),
     TOMEZone(
         name="Temporal Rift",
@@ -185,23 +191,23 @@ ZONES = [
         enemies=[],
         variant_enemies=[],
         tier="Misc Pre-Dreadfell",
-        entrance_rule=True_(),
+        entrance_rule=HasGroupUnique("Pre-Dreadfell Zones", count=1),
     ),
     TOMEZone(
         name="Dreadfell",
         enemies=["Skeletons Tier 1", "Skeletons Tier 2", "Ghoul Tier 1",
                  "Ghoul Tier 2", "Vampire Tier 2", "Vampire Tier 3",
-                 "Wight Tier 2", "Wight Tier 3"],
+                 "Wight Tier 2", "Wight Tier 3", "Ghost Tier 3"],
         variant_enemies=[],
         tier="Misc Pre-Dreadfell",
         entrance_rule=(Has("Dreadfell") &
                        HasGroupUnique("Tier 2 Zones", count=4) &
-                       HasGroupUnique("Pre-Dreadfell Zones", count=2)),
+                       HasGroupUnique("Pre-Dreadfell Zones", count=1)),
         has_backup_guardian=True,
     ),
     TOMEZone(
         name="Reknor",
-        enemies=["Trolls Tier 1", "Trolls Tier 2", "Orc Tier 1", "Orc Tier 2"],
+        enemies=["Trolls Tier 1", "Trolls Tier 2", "Trolls Tier 3", "Orc Tier 1", "Orc Tier 2"],
         variant_enemies=[],
         tier="Early East/West",
         entrance_rule=Has("Reknor"),
@@ -216,7 +222,9 @@ ZONES = [
     ),
     TOMEZone(
         name="Vor Armoury",
-        enemies=["Orc Tier 1", "Orc Tier 2", "Vor Orc Tier 4"],
+        enemies=["Orc Tier 1", "Orc Tier 2", "Vor Orc Tier 4",
+                 "Bone Giant Tier 3", "Bone Giant Tier 4",
+                 "Grushnak Orc Tier 4"],
         variant_enemies=[],
         tier="Early East/West",
         entrance_rule=Has("Reknor")
@@ -236,6 +244,21 @@ ZONES = [
         tier="Early East/West",
         entrance_rule=Has("Reknor") & Has("Ardhungol")
     ),
+    # Need to handle DLC properly first.
+    # TOMEZone(
+    #     name="Bonus Zone",
+    #     enemies=[],
+    #     # This is actually three zones, but can be treated as alt
+    #     # versions for logic.
+    #     variant_enemies=["Jelly Tier 1", "Ooze Tier 1", "Ooze Tier 2",
+    # "Ooze Tier 3", "Ogre Tier 3", "Conclave Ogre Tier 3", "Bear Tier 1",
+    # "Bear Tier 2", "Vermin Tier 1", "Canines Tier 1", "Canines Tier 2",
+    # "Plant Tier 1", "Plant Tier 2", "Venom Drake Tier 2",
+    # "Venom Drake Tier 3", "Faeros Tier 2", ],
+    #     tier="Early East/West",
+    #     entrance_rule=Has("Reknor")
+    # ),
+
     TOMEZone(
         name="Tannen's Quest",
         enemies=[],
@@ -288,7 +311,7 @@ ZONES = [
         name="Rak'Shor Pride",
         enemies=["Orc Tier 1", "Orc Tier 2", "Undead Horror Tier 2",
                  "Rak'Shor Orc Tier 3", "Rak'Shor Orc Tier 4",
-                 "Bone Giant Tier 3", "Bone Giant Tier 4"],
+                 "Bone Giant Tier 3", "Bone Giant Tier 4", "Bone Giant Tier 5"],
         variant_enemies=[],
         tier="Orc Prides",
         entrance_rule=Has("Rak'Shor Pride")
@@ -305,8 +328,10 @@ ZONES = [
         enemies=["Orc Tier 1", "Orc Tier 2", "Gorbat Orc Tier 4",
                  "Cold Drake Tier 2", "Fire Drake Tier 2",
                  "Storm Drake Tier 2", "Venom Drake Tier 2",
+                 "Cold Drake Tier 3", "Fire Drake Tier 3",
+                 "Storm Drake Tier 3", "Venom Drake Tier 3",
                  "Multihued Drake Tier 2", "Multihued Drake Tier 3",
-                 "Wild Drake Tier 4"],
+                 "Wild Drake Tier 4", "Wild Drake Tier 5"],
         variant_enemies=[],
         tier="Orc Prides",
         entrance_rule=Has("Gorbat Pride")
@@ -352,6 +377,84 @@ ZONES = [
         # Handled by Endgame tier
         entrance_rule=True_()
     ),
+    TOMEZone(
+        name="Escape From Reknor",
+        enemies=["Orc Tier 1", "Rodent Tier 1", "Vermin Tier 1", "Snake Tier 1", "Molds Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Dwarf",
+    ),
+    TOMEZone(
+        # Not a typo, this is the actual zone name in game
+        name="Deep Bellow",
+        enemies=["Corrupted Horror Tier 1", "Rodent Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        has_backup_guardian=True,
+        required_start="Dwarf",
+    ),
+    TOMEZone(
+        name="Ritch Tunnels",
+        enemies=["Ant Tier 1", "Jelly Tier 1", "Vermin Tier 1", "Rel Ritch Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Yeek",
+    ),
+    TOMEZone(
+        name="Murgol's Lair",
+        enemies=["Aquatic Critter Tier 1", "Aquatic Critter Tier 2", "Yaech Tier 1"],
+        variant_enemies=["Naga Tier 1"],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Yeek",
+    ),
+    TOMEZone(
+        name="Blighted Ruins",
+        # Ghouls can spawn here, but the player is too low level for
+        # that to be consistent.
+        enemies=["Skeletons Tier 1", "Rodent Tier 1", "Vermin Tier 1",
+                 "Blighted Ruins Horror Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Undead",
+    ),
+    TOMEZone(
+        name="Abashed Expanse",
+        enemies=["Losgoroth Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Archmage",
+    ),
+    TOMEZone(
+        name="Slazish Fens",
+        enemies=["Naga Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Celestial",
+    ),
+    TOMEZone(
+        name="Unhallowed Morass",
+        enemies=["Chronomancer Spider Tier 1"],
+        variant_enemies=[],
+        tier="Tier 1",
+        entrance_rule=True_(),
+        required_start="Chronomancer",
+    ),
+    TOMEZone(
+        name="Tranquil Meadow",
+        enemies=["Caravaneer Tier 1", "Cursed Shadow Tier 2",
+                 "Cursed Canine Tier 2", "Canines Tier 1"],
+        variant_enemies=[],
+        tier="Misc Pre-Dreadfell",
+        entrance_rule=True_(),
+        required_start="Cursed",
+    ),
 ]
 
 def create_and_connect_regions(world: TOMEWorld) -> None:
@@ -375,6 +478,7 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
         endgame = Region("Endgame", world.player, world.multiworld)
         regions.append(prides)
         regions.append(endgame)
+
     world.multiworld.regions += regions
 
     eyal.connect(tier1, "Eyal to Tier 1")
@@ -382,7 +486,8 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
     if world.options.objective >= 1:
         tier15.connect(tier2, "Tier 1.5 to Tier 2", HasGroupUnique("Tier 1.5 Zones", count=1))
     if world.options.objective >= 2:
-        tier2.connect(predreadfell, "Tier 2 to Pre-Dreadfell", HasGroupUnique("Tier 2 Zones", count=3))
+        tier2.connect(predreadfell, "Tier 2 to Pre-Dreadfell",
+                      HasGroupUnique("Tier 2 Zones", count=2))
     if world.options.objective >= 3:
         predreadfell.connect(earlyeast, "Early East/West starting with Dreadfell",
                              Has("Dreadfell") &
@@ -393,6 +498,8 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
         prides.connect(endgame, "Endgame after Prides", HasGroupUnique("Pride Zones", count=4))
 
     for zone in ZONES:
+        if zone.required_start and zone.required_start not in world.options.required_starts:
+            continue
         zone_region = Region(zone.name, world.player, world.multiworld)
         if zone.tier:
             try:
