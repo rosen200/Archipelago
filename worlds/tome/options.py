@@ -81,7 +81,17 @@ class NumLevelUps(Range):
     default = 0
 
 class RequiredStarts(OptionSet):
-    """Race or Class specific zones that can be logically required."""
+    """Race or Class specific zones that can be logically required.
+
+    Valid values are:
+     - "Yeek" (includes Murgol's Lair and Ritch Tunnels)
+     - "Dwarf" (includes Escape from Reknor and Deep Bellow)
+     - "Undead" (includes Blighted Ruins)
+     - "Archmage" (includes Abashed Expanse)
+     - "Chronomancer" (includes Unhallowed Morass)
+     - "Celestial" (include Slazish Fens)
+     - "Cursed" (includes Tranquil Meadow, which isn't a starting zone)
+    """
     display_name = "Required Starts"
 
     valid_keys = frozenset({"Dwarf", "Yeek", "Undead", "Archmage",
