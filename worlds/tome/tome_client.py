@@ -146,16 +146,27 @@ class TOMEAddonConnection():
             return None
         data = ENEMY_LOCATIONS[name]
         location_name = get_location_name_for_enemy(
-            data, not self.ctx.slot_data["require_alt_zones"],
+            data, not self.ctx.slot_data["require_all_zones"],
             self.ctx.slot_data["merge_generic_enemy_locations"])
         if location_name not in ALL_LOCATION_IDS:
             logger.error("Couldn't find id for %s!", location_name)
             return None
         return ALL_LOCATION_IDS[location_name]
 
+    def handle_location_exceptions(self, location):
+        if (location == "Kroltar the Scourge" and
+            not self.ctx.slot_data["require_all_zones"]):
+            # Change this another bonus zone boss to guarantee that
+            # any given character can get the boss location even if
+            # bonus zone rolls scourge pits. Remove this once DLC is
+            # supported.
+            return "Mindworm"
+        return location
+
     def handle_location_message(self, message):
         location = message[len(LOCATION_PREFIX):].strip()
         location = self.strip_gloom_prefix(location)
+        location = self.handle_location_exceptions(location)
         location_id = self.get_id_for_location(location)
         if not location_id:
             return

@@ -590,7 +590,7 @@ ENEMY_LOCATIONS = {
         minimum_goal=0
     ),
     "rogue": TomeEnemyLocation(
-        name="cutpurse",
+        name="rogue",
         ap_id=99,
         region="Thieves Tier 1",
         is_boss=False,
@@ -621,6 +621,20 @@ ENEMY_LOCATIONS = {
         name="rogue sapper",
         ap_id=392,
         region="Thieves Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "bandit lord": TomeEnemyLocation(
+        name="bandit lord",
+        ap_id=493,
+        region="Thieves Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "bandit": TomeEnemyLocation(
+        name="bandit",
+        ap_id=505,
+        region="Thieves Tier 1",
         is_boss=False,
         minimum_goal=1
     ),
@@ -855,6 +869,13 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=3
     ),
+    "gigantic gravity worm": TomeEnemyLocation(
+        name="gigantic gravity worm",
+        ap_id=497,
+        region="Sandworm Tier 3",
+        is_boss=False,
+        minimum_goal=3
+    ),
     "gigantic corrosive tunneler": TomeEnemyLocation(
         name="gigantic corrosive tunneler",
         ap_id=139,
@@ -991,6 +1012,13 @@ ENEMY_LOCATIONS = {
     "snow giant boulder thrower": TomeEnemyLocation(
         name="snow giant boulder thrower",
         ap_id=158,
+        region="Snow Giant Tier 2",
+        is_boss=False,
+        minimum_goal=1
+    ),
+    "snow giant chieftan": TomeEnemyLocation(
+        name="snow giant chieftan",
+        ap_id=498,
         region="Snow Giant Tier 2",
         is_boss=False,
         minimum_goal=1
@@ -1165,6 +1193,27 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=2
     ),
+    "worm that walks": TomeEnemyLocation(
+        name="worm that walks",
+        ap_id=499,
+        region="Horror Tier 3",
+        is_boss=False,
+        minimum_goal=2
+    ),
+    "oozing horror": TomeEnemyLocation(
+        name="oozing horror",
+        ap_id=500,
+        region="Horror Tier 3",
+        is_boss=False,
+        minimum_goal=2
+    ),
+    "umbral horror": TomeEnemyLocation(
+        name="umbral horror",
+        ap_id=501,
+        region="Horror Tier 3",
+        is_boss=False,
+        minimum_goal=2
+    ),
     "bloated horror": TomeEnemyLocation(
         name="bloated horror",
         ap_id=249,
@@ -1203,6 +1252,20 @@ ENEMY_LOCATIONS = {
     "ravenous horror": TomeEnemyLocation(
         name="ravenous horror",
         ap_id=216,
+        region="Aquatic Horror Tier 2",
+        is_boss=False,
+        minimum_goal=2
+    ),
+    "boiling horror": TomeEnemyLocation(
+        name="boiling horror",
+        ap_id=502,
+        region="Aquatic Horror Tier 2",
+        is_boss=False,
+        minimum_goal=2
+    ),
+    "swarm hive": TomeEnemyLocation(
+        name="swarm hive",
+        ap_id=503,
         region="Aquatic Horror Tier 2",
         is_boss=False,
         minimum_goal=2
@@ -1456,8 +1519,8 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=3,
     ),
-    "Briagh": TomeEnemyLocation(
-        name="Briagh",
+    "Briagh, Great Sand Wyrm": TomeEnemyLocation(
+        name="Briagh, Great Sand Wyrm",
         ap_id=264,
         region="Briagh's Lair",
         is_boss=True,
@@ -1537,10 +1600,39 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=3,
     ),
+    "faerlhing": TomeEnemyLocation(
+        name="faerlhing",
+        ap_id=504,
+        region="Spider Tier 4",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "ungolmor": TomeEnemyLocation(
+        name="ungolmor",
+        ap_id=494,
+        region="Spider Tier 5",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    "losselhing": TomeEnemyLocation(
+        name="losselhing",
+        ap_id=495,
+        region="Spider Tier 4",
+        is_boss=False,
+        minimum_goal=3,
+    ),
     "weaver young": TomeEnemyLocation(
         name="weaver young",
         ap_id=279,
         region="Spider Tier 1",
+        is_boss=False,
+        minimum_goal=3,
+    ),
+    # Weaver patriarch at rarity 12 is too rare to include.
+    "weaver matriarch": TomeEnemyLocation(
+        name="weaver matriarch",
+        ap_id=496,
+        region="Spider Tier 5",
         is_boss=False,
         minimum_goal=3,
     ),
@@ -2400,6 +2492,143 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=0
     ),
+    "Corrupted Daelach": TomeEnemyLocation(
+        name="Corrupted Daelach",
+        ap_id=469,
+        region="Valley of the Moon Boss",
+        is_boss=True,
+        is_mergeable=False,
+        minimum_goal=0
+    ),
+    "ogre guard": TomeEnemyLocation(
+        name="ogre guard",
+        ap_id=471,
+        region="Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "ogre mauler": TomeEnemyLocation(
+        name="ogre mauler",
+        ap_id=472,
+        region="Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "ogre pounder": TomeEnemyLocation(
+        name="ogre pounder",
+        ap_id=473,
+        region="Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "ogre rune-spinner": TomeEnemyLocation(
+        name="ogre rune-spinner",
+        ap_id=474,
+        region="Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "degenerated ogric mass": TomeEnemyLocation(
+        name="degenerated ogric mass",
+        ap_id=476,
+        region="Conclave Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "ogric abomination": TomeEnemyLocation(
+        name="ogric abomination",
+        ap_id=477,
+        region="Conclave Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    # Guaranteed spawns
+    "ogre sentry": TomeEnemyLocation(
+        name="ogre sentry",
+        ap_id=478,
+        region="Conclave Ogre Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "Healer Astelrid": TomeEnemyLocation(
+        name="Healer Astelrid",
+        ap_id=479,
+        region="Bonus Zone",
+        is_boss=True,
+        minimum_goal=0
+    ),
+    "Mindworm": TomeEnemyLocation(
+        name="Mindworm",
+        ap_id=480,
+        region="Bonus Zone",
+        is_boss=True,
+        minimum_goal=0
+    ),
+    "Corrupted Oozemancer": TomeEnemyLocation(
+        name="Corrupted Oozemancer",
+        ap_id=481,
+        region="Bonus Zone",
+        is_boss=True,
+        minimum_goal=0
+    ),
+    "daelach": TomeEnemyLocation(
+        name="daelach",
+        ap_id=483,
+        region="Major Demon Tier 5",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "champion of Urh'Rok": TomeEnemyLocation(
+        name="champion of Urh'Rok",
+        ap_id=484,
+        region="Major Demon Tier 5",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "forge-giant": TomeEnemyLocation(
+        name="forge-giant",
+        ap_id=485,
+        region="Major Demon Tier 5",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "gladiator": TomeEnemyLocation(
+        name="gladiator",
+        ap_id=488,
+        region="Gladiator Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "halfling slinger": TomeEnemyLocation(
+        name="halfling slinger",
+        ap_id=489,
+        region="Gladiator Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "arcane blade": TomeEnemyLocation(
+        name="arcane blade",
+        ap_id=490,
+        region="Gladiator Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "Kryl'Feijan": TomeEnemyLocation(
+        name="Kryl'Feijan",
+        ap_id=491,
+        region="Crypt of Kryl'Feijan Boss",
+        is_boss=True,
+        is_mergeable=False,
+        minimum_goal=0
+    ),
+    "Assassin Lord": TomeEnemyLocation(
+        name="Assassin Lord",
+        ap_id=492,
+        region="Unknown Tunnels Boss",
+        is_boss=True,
+        is_mergeable=False,
+        minimum_goal=0
+    ),
 }
 
 GENERIC_LOCATION_IDS = {
@@ -2534,6 +2763,11 @@ GENERIC_LOCATION_IDS = {
     "Cursed Shadow Tier 2 (Any)": 465,
     "Ant Tier 3 (Any)": 466,
     "Swarm Tier 2 (Any)": 468,
+    "Ogre Tier 3 (Any)": 470,
+    "Conclave Ogre Tier 3 (Any)": 475,
+    "Major Demon Tier 5 (Any)": 482,
+    "Bonus Zone Boss": 486,
+    "Gladiator Tier 1 (Any)": 487,
 }
 
 
@@ -2574,7 +2808,7 @@ def create_regular_locations(world: TOMEWorld) -> None:
             # Parent region doesn't exist, location will never be
             # reachable.
             continue
-        merge_bosses = not world.options.require_alt_zones
+        merge_bosses = not world.options.require_all_zones
         location_name = get_location_name_for_enemy(
             data, merge_bosses, world.options.merge_generic_enemy_locations)
         if location_name not in created_locations:

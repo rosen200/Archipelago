@@ -243,6 +243,12 @@ TOME_ITEMS = {
         minimum_goal=0,
         starter_zone=True,
     ),
+    "Bonus Zone": TOMEItemDef(
+        name="Bonus Zone",
+        ap_id=38,
+        classification=ItemClassification.progression,
+        minimum_goal=3,
+    ),
 }
 
 ITEM_NAME_TO_ID = {name: item.ap_id for name, item in TOME_ITEMS.items()}

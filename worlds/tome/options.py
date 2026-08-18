@@ -11,14 +11,17 @@ class MergeGenericEnemyLocations(DefaultOnToggle):
     """
     display_name = "Merge Generic Enemy Locations"
 
-class RequireAltZones(Toggle):
-    """Allow logic to consider both the normal and alternate versions
-    of early zones. If this options is turned off only enemies that
+class RequireAllZones(Toggle):
+    """Allow logic to consider zones, including alternate versions,
+    mutually exclusive zones, and zones that may not appear in a given
+    playthrough. If this options is turned off only enemies that
     frequently appear in both the normal and alternate versions of a
-    zone will be in logic. Additionally the normal and alternate
-    bosses will be separate locations.
+    zone will be in logic and enemies from mutually exclusive or
+    non-guaranteed zones will never be in logic. Additionally the
+    normal and alternate bosses as well as individual bosses of
+    mutually exclusive zones will be separate locations.
     """
-    display_name = "Require Alt Zones"
+    display_name = "Require All Zones"
 
 class Objective(Choice):
     """What condition should be required for goal."""
@@ -101,7 +104,7 @@ class RequiredStarts(OptionSet):
 @dataclass
 class TOMEOptions(PerGameCommonOptions):
     merge_generic_enemy_locations: MergeGenericEnemyLocations
-    require_alt_zones: RequireAltZones
+    require_all_zones: RequireAllZones
     objective: Objective
     include_prodigy: IncludeProdigy
     include_category_point: IncludeCategoryPoint

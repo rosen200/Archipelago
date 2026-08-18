@@ -69,6 +69,14 @@ ZONES = [
         entrance_rule=Has("Rhaloren Camp")
     ),
     TOMEZone(
+        name="Southeast Derth",
+        enemies=[],
+        # Missable zone
+        variant_enemies=["Gladiator Tier 1"],
+        tier="Tier 1",
+        entrance_rule=True_(),
+    ),
+    TOMEZone(
         name="Old Forest",
         enemies=["Bear Tier 1", "Bear Tier 2", "Ant Tier 1", "Ant Tier 2",
                  "Plant Tier 1", "Plant Tier 2", "Snake Tier 1",
@@ -194,6 +202,16 @@ ZONES = [
         entrance_rule=HasGroupUnique("Pre-Dreadfell Zones", count=1),
     ),
     TOMEZone(
+        name="Unknown Tunnels",
+        enemies=[],
+        # Missable zone
+        variant_enemies=["Thieves Tier 1", "Unknown Tunnels Boss"],
+        tier="Misc Pre-Dreadfell",
+        entrance_rule=True_(),
+        has_backup_guardian=True,
+    ),
+
+    TOMEZone(
         name="Dreadfell",
         enemies=["Skeletons Tier 1", "Skeletons Tier 2", "Ghoul Tier 1",
                  "Ghoul Tier 2", "Vampire Tier 2", "Vampire Tier 3",
@@ -244,21 +262,36 @@ ZONES = [
         tier="Early East/West",
         entrance_rule=Has("Reknor") & Has("Ardhungol")
     ),
-    # Need to handle DLC properly first.
-    # TOMEZone(
-    #     name="Bonus Zone",
-    #     enemies=[],
-    #     # This is actually three zones, but can be treated as alt
-    #     # versions for logic.
-    #     variant_enemies=["Jelly Tier 1", "Ooze Tier 1", "Ooze Tier 2",
-    # "Ooze Tier 3", "Ogre Tier 3", "Conclave Ogre Tier 3", "Bear Tier 1",
-    # "Bear Tier 2", "Vermin Tier 1", "Canines Tier 1", "Canines Tier 2",
-    # "Plant Tier 1", "Plant Tier 2", "Venom Drake Tier 2",
-    # "Venom Drake Tier 3", "Faeros Tier 2", ],
-    #     tier="Early East/West",
-    #     entrance_rule=Has("Reknor")
-    # ),
-
+    TOMEZone(
+        name="Bonus Zone",
+        enemies=[],
+        # This is actually three zones (four with the cults DLC), but
+        # can be treated as alt versions for logic. This does
+        # sacrifice the ability to include sludgenest/caldera without
+        # Halfling ruins but that's probably not worth the added
+        # complexity.
+        variant_enemies=[
+            "Jelly Tier 1", "Ooze Tier 1", "Ooze Tier 2",
+            "Ooze Tier 3", "Ogre Tier 3", "Conclave Ogre Tier 3", "Bear Tier 1",
+            "Bear Tier 2", "Vermin Tier 1", "Canines Tier 1", "Canines Tier 2",
+            "Plant Tier 1", "Plant Tier 2", "Venom Drake Tier 2",
+            "Venom Drake Tier 3", "Faeros Tier 2", "Faeros Tier 3"],
+        tier="Early East/West",
+        # This could be conclave vault, which requires Halfling Ruins
+        entrance_rule=Has("Bonus Zone") & Has("Halfling Ruins")
+    ),
+    TOMEZone(
+        name="Crypt of Kryl'Feijan",
+        enemies=[],
+        # Missable zone
+        variant_enemies=["Elven Warriors Tier 1", "Elven Casters Tier 1",
+                         "Minor Demon Tier 2", "Minor Demon Tier 3",
+                         "Elven Warriors Tier 2", "Elven Casters Tier 3",
+                         "Crypt of Kryl'Feijan Boss"],
+        tier="Early East/West",
+        entrance_rule=Has("Reknor"),
+        has_backup_guardian=True,
+    ),
     TOMEZone(
         name="Tannen's Quest",
         enemies=[],
@@ -354,12 +387,25 @@ ZONES = [
     TOMEZone(
         # Also includes the charred scar
         name="Erúan",
-        enemies=["Fire Drake Tier 2", "Faeros Tier 3", "Ritch Tier 3", "Ritch Tier 4"],
+        enemies=["Fire Drake Tier 3", "Fire Drake Tier 2", "Faeros Tier 3", "Ritch Tier 3", "Ritch Tier 4"],
         variant_enemies=[],
         tier="Orc Prides",
         entrance_rule=HasGroupUnique("Pride Zones", count=1)
     ),
-
+    TOMEZone(
+        # Caverns leading to this zone have the same enemies.
+        name="Valley of the Moon",
+        enemies=[],
+        # The enemies are common, but the zone itself isn't guaranteed.
+        variant_enemies=["Minor Demon Tier 2", "Minor Demon Tier 3",
+                         "Major Demon Tier 4", "Major Demon Tier 5",
+                         # Put the boss in its own region so it isn't
+                         # generated for single-character settings.
+                         "Valley of the Moon Boss"],
+        tier="Endgame",
+        # Handled by Endgame tier
+        entrance_rule=True_()
+    ),
     TOMEZone(
         name="Slime Tunnels",
         enemies=["Ooze Tier 1", "Ooze Tier 2", "Ooze Tier 3", "Jelly Tier 1"],
@@ -520,7 +566,7 @@ def create_and_connect_regions(world: TOMEWorld) -> None:
                 enemy_region = world.get_region(enemy)
             zone_region.connect(enemy_region, f"{enemy} in {zone.name}")
 
-        if world.options.require_alt_zones:
+        if world.options.require_all_zones:
             for enemy in zone.variant_enemies:
                 if enemy not in created_regions:
                     created_regions.add(enemy)
