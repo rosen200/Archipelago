@@ -8,7 +8,8 @@ from worlds.AutoWorld import World, WebWorld
 from . import items, locations, regions, rules
 from . import options as tome_options
 
-SLOT_DATA_OPTIONS = ("merge_generic_enemy_locations", "require_all_zones", "objective")
+SLOT_DATA_OPTIONS = ("merge_generic_enemy_locations", "require_all_zones",
+                     "objective", "bad_luck_protection")
 
 
 class TOMEWeb(WebWorld):

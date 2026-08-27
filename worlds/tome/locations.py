@@ -19,6 +19,7 @@ class TomeEnemyLocation:
     is_boss: bool
     minimum_goal: int
     is_mergeable: bool = True
+    boss_variant: str = ""
 
 
 ENEMY_LOCATIONS = {
@@ -389,14 +390,16 @@ ENEMY_LOCATIONS = {
         ap_id=44,
         region="Trollmire",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="normal",
     ),
     "Shax the Slimy": TomeEnemyLocation(
         name="Shax the Slimy",
         ap_id=45,
         region="Trollmire",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="flooded",
     ),
     "Spellblaze Crystal": TomeEnemyLocation(
         name="Spellblaze Crystal",
@@ -411,28 +414,32 @@ ENEMY_LOCATIONS = {
         ap_id=47,
         region="Norgos' Lair",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="normal",
     ),
     "Norgos, the Frozen": TomeEnemyLocation(
         name="Norgos, the Frozen",
         ap_id=48,
         region="Norgos' Lair",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="invaded",
     ),
     "The Shade": TomeEnemyLocation(
         name="The Shade",
         ap_id=49,
         region="Kor'Pul",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="normal",
     ),
     "The Possessed": TomeEnemyLocation(
         name="The Possessed",
         ap_id=50,
         region="Kor'Pul",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="hideout",
     ),
     "degenerated skeleton warrior": TomeEnemyLocation(
         name="degenerated skeleton warrior",
@@ -1016,8 +1023,8 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=1
     ),
-    "snow giant chieftan": TomeEnemyLocation(
-        name="snow giant chieftan",
+    "snow giant chieftain": TomeEnemyLocation(
+        name="snow giant chieftain",
         ap_id=498,
         region="Snow Giant Tier 2",
         is_boss=False,
@@ -1070,49 +1077,56 @@ ENEMY_LOCATIONS = {
         ap_id=163,
         region="Daikara",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        boss_variant="erupting",
     ),
     "Rantha the Worm": TomeEnemyLocation(
         name="Rantha the Worm",
         ap_id=164,
         region="Daikara",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        boss_variant="normal",
     ),
     "Horned Horror": TomeEnemyLocation(
         name="Horned Horror",
         ap_id=165,
         region="Maze",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        boss_variant="collapsed",
     ),
     "Minotaur of the Labyrinth": TomeEnemyLocation(
         name="Minotaur of the Labyrinth",
         ap_id=166,
         region="Maze",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        boss_variant="normal",
     ),
     "Sandworm Queen": TomeEnemyLocation(
         name="Sandworm Queen",
         ap_id=167,
         region="Sandworm Lair",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        is_mergeable=False
     ),
     "Shardskin": TomeEnemyLocation(
         name="Shardskin",
         ap_id=168,
         region="Old Forest",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        boss_variant="crystalized",
     ),
     "Wrathroot": TomeEnemyLocation(
         name="Wrathroot",
         ap_id=169,
         region="Old Forest",
         is_boss=True,
-        minimum_goal=1
+        minimum_goal=1,
+        boss_variant="normal",
     ),
     "ghoul": TomeEnemyLocation(
         name="ghoul",
@@ -1410,7 +1424,8 @@ ENEMY_LOCATIONS = {
         region="Lake of Nur",
         is_boss=True,
         minimum_goal=2,
-        is_mergeable=False
+        is_mergeable=False,
+        boss_variant="all",
     ),
     "storm drake hatchling": TomeEnemyLocation(
         name="storm drake hatchling",
@@ -1747,6 +1762,7 @@ ENEMY_LOCATIONS = {
         region="Tannen's Quest",
         is_boss=True,
         minimum_goal=3,
+        boss_variant="fearscape",
     ),
     "The Shade of Telos": TomeEnemyLocation(
         name="The Shade of Telos",
@@ -1754,6 +1770,7 @@ ENEMY_LOCATIONS = {
         region="Tannen's Quest",
         is_boss=True,
         minimum_goal=3,
+        boss_variant="telmur",
     ),
     "Tannen": TomeEnemyLocation(
         name="Tannen",
@@ -2274,6 +2291,7 @@ ENEMY_LOCATIONS = {
         region="Murgol's Lair",
         is_boss=True,
         minimum_goal=0,
+        boss_variant="invaded",
     ),
     "Murgol, the Yaech Lord": TomeEnemyLocation(
         name="Murgol, the Yaech Lord",
@@ -2281,6 +2299,7 @@ ENEMY_LOCATIONS = {
         region="Murgol's Lair",
         is_boss=True,
         minimum_goal=0,
+        boss_variant="normal",
     ),
     "yaech diver": TomeEnemyLocation(
         name="yaech diver",
@@ -2317,6 +2336,7 @@ ENEMY_LOCATIONS = {
         is_boss=True,
         minimum_goal=0,
         is_mergeable=False,
+        boss_variant="none",
     ),
     "Half-Finished Bone Giant": TomeEnemyLocation(
         name="Half-Finished Bone Giant",
@@ -2378,6 +2398,7 @@ ENEMY_LOCATIONS = {
         is_boss=True,
         minimum_goal=0,
         is_mergeable=False,
+        boss_variant="none",
     ),
     "Berethh": TomeEnemyLocation(
         name="Berethh",
@@ -2495,10 +2516,11 @@ ENEMY_LOCATIONS = {
     "Corrupted Daelach": TomeEnemyLocation(
         name="Corrupted Daelach",
         ap_id=469,
-        region="Valley of the Moon Boss",
+        region="Valley of the Moon",
         is_boss=True,
         is_mergeable=False,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="missable",
     ),
     "ogre guard": TomeEnemyLocation(
         name="ogre guard",
@@ -2555,21 +2577,24 @@ ENEMY_LOCATIONS = {
         ap_id=479,
         region="Bonus Zone",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="conclave vault",
     ),
     "Mindworm": TomeEnemyLocation(
         name="Mindworm",
         ap_id=480,
         region="Bonus Zone",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="dogroth caldera",
     ),
     "Corrupted Oozemancer": TomeEnemyLocation(
         name="Corrupted Oozemancer",
         ap_id=481,
         region="Bonus Zone",
         is_boss=True,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="sludgenest",
     ),
     "daelach": TomeEnemyLocation(
         name="daelach",
@@ -2616,18 +2641,20 @@ ENEMY_LOCATIONS = {
     "Kryl'Feijan": TomeEnemyLocation(
         name="Kryl'Feijan",
         ap_id=491,
-        region="Crypt of Kryl'Feijan Boss",
+        region="Crypt of Kryl'Feijan",
         is_boss=True,
         is_mergeable=False,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="missable",
     ),
     "Assassin Lord": TomeEnemyLocation(
         name="Assassin Lord",
         ap_id=492,
-        region="Unknown Tunnels Boss",
+        region="Unknown Tunnels",
         is_boss=True,
         is_mergeable=False,
-        minimum_goal=0
+        minimum_goal=0,
+        boss_variant="missable",
     ),
 }
 
@@ -2809,6 +2836,9 @@ def create_regular_locations(world: TOMEWorld) -> None:
             # reachable.
             continue
         merge_bosses = not world.options.require_all_zones
+        if data.is_boss and data.boss_variant == "missable" and merge_bosses:
+            # Don't generate missable zone bosses unless all zones are required
+            continue
         location_name = get_location_name_for_enemy(
             data, merge_bosses, world.options.merge_generic_enemy_locations)
         if location_name not in created_locations:
@@ -2849,3 +2879,16 @@ def create_events(world: TOMEWorld) -> None:
             "Sorcerors Defeated", "Sorcerors Defeated",
             location_type=TOMELocation, item_type=items.TOMEItem
         )
+
+def make_enemy_types_map():
+    regions_to_enemies = {}
+    for enemy in ENEMY_LOCATIONS.values():
+        if enemy.region not in regions_to_enemies:
+            if f"{enemy.region} (Any)" in GENERIC_LOCATION_IDS:
+                regions_to_enemies[enemy.region] = [GENERIC_LOCATION_IDS[f"{enemy.region} (Any)"]]
+            else:
+                regions_to_enemies[enemy.region] = []
+        regions_to_enemies[enemy.region].append(enemy.ap_id)
+    return regions_to_enemies
+
+REGIONS_TO_ENEMIES = make_enemy_types_map()

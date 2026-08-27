@@ -9,7 +9,8 @@ from typing import TYPE_CHECKING, Any, TextIO
 from CommonClient import ClientCommandProcessor, CommonContext, logger, server_loop, gui_enabled, get_base_parser
 from NetUtils import ClientStatus
 
-from .locations import ALL_LOCATION_IDS, ENEMY_LOCATIONS, get_location_name_for_enemy
+from .locations import ALL_LOCATION_IDS, ENEMY_LOCATIONS, REGIONS_TO_ENEMIES, get_location_name_for_enemy
+from .regions import ZONES_BY_NAME
 from .world import SLOT_DATA_OPTIONS
 
 
@@ -163,6 +164,38 @@ class TOMEAddonConnection():
             return "Mindworm"
         return location
 
+    def handle_bad_luck_protection(self, location):
+        if not self.ctx.slot_data.get("bad_luck_protection", False):
+            return
+        if location not in ENEMY_LOCATIONS:
+            return
+        enemy = ENEMY_LOCATIONS[location]
+        if (not enemy.is_boss or
+            enemy.boss_variant == "none" or
+            "Backup Guardian" in enemy.region):
+            return
+
+        zone = ZONES_BY_NAME[enemy.region]
+
+        for enemy_region in zone.enemies:
+            self.locations_checked.update(REGIONS_TO_ENEMIES[enemy_region])
+
+        if (not self.ctx.slot_data["require_all_zones"] or
+            not enemy.boss_variant):
+            return
+
+        if enemy.boss_variant in zone.variants:
+            for enemy_region in zone.variants[enemy.boss_variant]:
+                self.locations_checked.update(REGIONS_TO_ENEMIES[enemy_region])
+        elif enemy.boss_variant == "all":
+            for variant_enemies in zone.variants.values():
+                for enemy_region in variant_enemies:
+                    self.locations_checked.update(REGIONS_TO_ENEMIES[enemy_region])
+        else:
+            logger.error("%s is the boss of unknown zone %s variant %s!",
+                         location, enemy.region, enemy.boss_variant)
+
+
     def handle_location_message(self, message):
         location = message[len(LOCATION_PREFIX):].strip()
         location = self.strip_gloom_prefix(location)
@@ -175,6 +208,7 @@ class TOMEAddonConnection():
             asyncio.run(self.ctx.send_msgs([
                 {"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
             self.ctx.finished_game = True
+        self.handle_bad_luck_protection(location)
         asyncio.run(self.ctx.check_locations(self.locations_checked))
 
     def handle_message(self, message):

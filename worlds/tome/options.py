@@ -23,7 +23,19 @@ class RequireAllZones(Toggle):
     """
     display_name = "Require All Zones"
 
+class BadLuckProtection(DefaultOnToggle):
+    """Automatically send all locations for enemies in a zone upon
+    defeating that zone's boss. This prevents needing to play through
+    the zone on a second character if a given enemies doesn't
+    spawn. If require_all_zones is True, this will send locations for
+    all enemies that could be found in the specific version of the
+    zone the boss is from. If require_all_zones is False, this will
+    only send locations for enemies common to all variants of the
+    zone."""
+    display_name = "Bad Luck Protection"
+
 class Objective(Choice):
+
     """What condition should be required for goal."""
     display_name = "Objective"
 
@@ -105,6 +117,7 @@ class RequiredStarts(OptionSet):
 class TOMEOptions(PerGameCommonOptions):
     merge_generic_enemy_locations: MergeGenericEnemyLocations
     require_all_zones: RequireAllZones
+    bad_luck_protection: BadLuckProtection
     objective: Objective
     include_prodigy: IncludeProdigy
     include_category_point: IncludeCategoryPoint
