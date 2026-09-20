@@ -130,6 +130,34 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=0
     ),
+    "rattlesnake": TomeEnemyLocation(
+        name="rattlesnake",
+        ap_id=13,
+        region="Snake Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "king cobra": TomeEnemyLocation(
+        name="king cobra",
+        ap_id=507,
+        region="Snake Tier 1",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "black mamba": TomeEnemyLocation(
+        name="black mamba",
+        ap_id=506,
+        region="Snake Tier 2",
+        is_boss=False,
+        minimum_goal=0
+    ),
+    "anaconda": TomeEnemyLocation(
+        name="anaconda",
+        ap_id=508,
+        region="Snake Tier 3",
+        is_boss=False,
+        minimum_goal=0
+    ),
     "midge swarm": TomeEnemyLocation(
         name="midge swarm",
         ap_id=14,
@@ -145,7 +173,7 @@ ENEMY_LOCATIONS = {
         minimum_goal=0
     ),
     "hornet swarm": TomeEnemyLocation(
-        name="midge swarm",
+        name="hornet swarm",
         ap_id=16,
         region="Swarm Tier 1",
         is_boss=False,
@@ -1308,7 +1336,9 @@ ENEMY_LOCATIONS = {
     "faeros": TomeEnemyLocation(
         name="faeros",
         ap_id=225,
-        region="Faeros Tier 3",
+        # Level range should only appear in tier 3, but seem to spawn
+        # reliably enough in alt daikara.
+        region="Faeros Tier 2",
         is_boss=False,
         minimum_goal=2
     ),
@@ -2367,8 +2397,9 @@ ENEMY_LOCATIONS = {
         is_boss=False,
         minimum_goal=0,
     ),
-    "Spatial Disturbance": TomeEnemyLocation(
-        name="Spatial Disturbance",
+    # Not a typo, it's spelled like this in game.
+    "Spacial Disturbance": TomeEnemyLocation(
+        name="Spacial Disturbance",
         ap_id=442,
         region="Abashed Expanse",
         is_boss=True,
@@ -2664,6 +2695,8 @@ GENERIC_LOCATION_IDS = {
     "Canines Tier 2 (Any)": 73,
     "Vermin Tier 1 (Any)": 74,
     "Snake Tier 1 (Any)": 75,
+    "Snake Tier 2 (Any)": 509,
+    "Snake Tier 3 (Any)": 510,
     "Swarm Tier 1 (Any)": 76,
     "Plant Tier 2 (Any)": 77,
     "Plant Tier 1 (Any)": 78,
@@ -2723,6 +2756,7 @@ GENERIC_LOCATION_IDS = {
     "Horror Tier 2 (Any)": 218,
     "Aquatic Horror Tier 2 (Any)": 219,
     "Elven Casters Tier 3 (Any)": 223,
+    "Faeros Tier 2 (Any)": 511,
     "Faeros Tier 3 (Any)": 224,
     "Faeros Tier 4 (Any)": 413,
     "Gwelgoroth Tier 2 (Any)": 229,

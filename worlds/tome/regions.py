@@ -79,7 +79,7 @@ ZONES = [
     TOMEZone(
         name="Old Forest",
         enemies=["Bear Tier 1", "Bear Tier 2", "Ant Tier 1", "Ant Tier 2",
-                 "Plant Tier 1", "Plant Tier 2", "Snake Tier 1",
+                 "Plant Tier 1", "Plant Tier 2", "Snake Tier 1", "Snake Tier 2",
                  "Swarm Tier 1", "Vermin Tier 1"],
         variants={"normal": ["Canines Tier 1"], "crystalized": ["Crystal Tier 1"]},
         tier="Tier 2",
@@ -111,8 +111,7 @@ ZONES = [
         name="Daikara",
         enemies=["Xorn Tier 2", "Snow Giant Tier 2"],
         variants={"normal": ["Cold Drake Tier 2", "Canines Tier 1"],
-                  # Faeros can spawn but are too rare to be reliable.
-                  "erupting": ["Fire Drake Tier 2"]},
+                  "erupting": ["Fire Drake Tier 2", "Faeros Tier 2"]},
         tier="Tier 2",
         entrance_rule=Has("Daikara"),
         has_backup_guardian=True,
@@ -166,7 +165,8 @@ ZONES = [
         name="Lake of Nur",
         enemies=["Aquatic Critter Tier 1", "Aquatic Critter Tier 2",
                  "Aquatic Demon Tier 2"],
-        variants={"normal": ["Snake Tier 1", "Plant Tier 1", "Plant Tier 2",
+        variants={"normal": ["Snake Tier 1", "Snake Tier 2",
+                             "Plant Tier 1", "Plant Tier 2",
                              "Horror Tier 3", "Horror Tier 2"],
                          "flooded": ["Aquatic Horror Tier 2"]},
         tier="Misc Pre-Dreadfell",
@@ -174,7 +174,7 @@ ZONES = [
     ),
     TOMEZone(
         name="Mark of the Spellblaze",
-        enemies=["Elven Casters Tier 1", "Elven Casters Tier 3",
+        enemies=["Elven Casters Tier 1", "Elven Casters Tier 3", "Faeros Tier 2"
                  "Faeros Tier 3", "Gwelgoroth Tier 2", "Rodent Tier 1", "Vermin Tier 1"],
         variants={},
         tier="Misc Pre-Dreadfell",
@@ -253,7 +253,8 @@ ZONES = [
     TOMEZone(
         name="Unremarkable Cave",
         enemies=["Rodent Tier 1", "Vermin Tier 1", "Molds Tier 1",
-                 "Snake Tier 1", "Skeletons Tier 1", "Skeletons Tier 2"],
+                 "Snake Tier 1", "Snake Tier 2", "Snake Tier 3",
+                 "Skeletons Tier 1", "Skeletons Tier 2"],
         variants={},
         tier="Early East/West",
         entrance_rule=Has("Reknor")
@@ -320,7 +321,7 @@ ZONES = [
                  "Skeletons Tier 2", "Ghoul Tier 1",
                  "Ghoul Tier 2", "Multihued Drake Tier 2",
                  "Multihued Drake Tier 3", "Multihued Drake Tier 4",
-                 "Bone Giant Tier 3", "Bone Giant Tier 4"],
+                 "Bone Giant Tier 3", "Bone Giant Tier 4", "Faeros Tier 2", "Faeros Tier 3", "Faeros Tier 4", "Gwelgoroth Tier 2"],
         variants={},
         tier="Early East/West",
         entrance_rule=Has("Reknor") & Has("Tannen")
@@ -395,7 +396,7 @@ ZONES = [
     TOMEZone(
         # Also includes the charred scar
         name="Erúan",
-        enemies=["Fire Drake Tier 3", "Fire Drake Tier 2", "Faeros Tier 3",
+        enemies=["Fire Drake Tier 3", "Fire Drake Tier 2", "Faeros Tier 2", "Faeros Tier 3", "Faeros Tier 4",
                  "Ritch Tier 3", "Ritch Tier 4"],
         variants={},
         tier="Orc Prides",
